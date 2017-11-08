@@ -29,6 +29,7 @@ driver.get(link)
 # helper function for scraping initial subsidiary data
 def extractData():
     
+    # TODO: MODIFY
     callsignID = driver.find_elements_by_xpath() # call sign/lease ID
     name = driver.find_elements_by_xpath() # names
     frn = driver.find_elements_by_xpath() # FRN
