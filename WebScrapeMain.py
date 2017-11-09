@@ -39,46 +39,50 @@ def extractData(sub):
     
         callSignDataButton = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody/tr[" + str(numR) + "]/td[2]/a")
         callSignDataButton.click()  
-
+    
         callSignData(rowTracker,numC)
-        
+         
         rowTracker += 1
     
     try:
         nextPage = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[2]/tbody/tr/td/table/tbody/tr/td[3]/a")
         nextPage.click()
-        extractData() # recursive function
+        extractData(sub) # recursive function
     except:
         pass
-
+    
 def callSignData(rowNum,colNum):
     # scrape market section
     market = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[8]/td[2]")
     ws1.row(rowNum).write(colNum, market.text)
     submarket = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[9]/td[2]")
     ws1.row(rowNum).write(colNum+1, submarket.text)
-        
+    channelBlock = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[8]/td[4]")
+    ws1.row(rowNum).write(colNum+2, channelBlock.text)
+    associatedFreq = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[9]/td[4]")
+    ws1.row(rowNum).write(colNum+3, associatedFreq.text)
+    
     # scrape dates section
     grant = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[11]/td[2]")
-    ws1.row(rowNum).write(colNum+2, grant.text)
+    ws1.row(rowNum).write(colNum+4, grant.text)
     effective = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[12]/td[2]")
-    ws1.row(rowNum).write(colNum+3, effective.text)
-    lastAction = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[13]/td[2]")
-    ws1.row(rowNum).write(colNum+4, lastAction.text)
+    ws1.row(rowNum).write(colNum+5, effective.text)
+   
+    # shift column to the right
     expiration = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[11]/td[4]")
-    ws1.row(rowNum).write(colNum+5, expiration.text)
+    ws1.row(rowNum).write(colNum+6, expiration.text)
     cancellation = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[12]/td[4]")
-    ws1.row(rowNum).write(colNum+6, cancellation.text)
+    ws1.row(rowNum).write(colNum+7, cancellation.text)
         
     # scrape buildout deadlines
     firstBD = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[15]/td[2]")
-    ws1.row(rowNum).write(colNum+7, firstBD.text)
+    ws1.row(rowNum).write(colNum+8, firstBD.text)
     secondBD = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[15]/td[4]")
-    ws1.row(rowNum).write(colNum+8, secondBD.text)
+    ws1.row(rowNum).write(colNum+9, secondBD.text)
         
     # scrape licensee ID
     licenseeID = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[4]/td/table/tbody/tr[2]/td[2]") 
-    ws1.row(rowNum).write(colNum+9, licenseeID.text)
+    ws1.row(rowNum).write(colNum+10, licenseeID.text)
         
     # click 'market' tab
     marketTab = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[1]/tbody/tr[2]/td/a[2]")
@@ -87,16 +91,13 @@ def callSignData(rowNum,colNum):
     
     # scrape auction data - just the text and not the link
     auction = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[4]/td[2]")
-    ws1.row(rowNum).write(colNum+10, auction.text)
+    ws1.row(rowNum).write(colNum+11, auction.text)
     
     # return to results    
     returnToResults = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/table/tbody/tr[2]/td/span[3]/a[2]")
     returnToResults.click()
-
-def subSearch(sub):
     
-    # update rows
-    rowTracker = 1
+def subSearch(sub):
     
     rsc = Select(driver.find_element_by_xpath("//select[@name='radioservicecode']"))
     # AH, AT, AW, CN, CW, CY, LD, SG, SL, SP, SY, TZ, WP, WU, WX, WY, WZ 
@@ -149,7 +150,12 @@ if __name__ == '__main__':
     for i in range(0,len(headerRow)):
         ws1.row(0).write(i, headerRow[i],style)
     
+    # test case using 'Pegasus Guard'
     subSearch("Pegasus Guard")
+
+    # implementation
+#     for subsidiary in createDict(data):
+#         subSearch(subsidiary)
     
     wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')
     
