@@ -19,7 +19,7 @@ ws1 = wb.add_sheet('Sheet 1',cell_overwrite_ok=True)
     
 rowTracker = 1
 
-def extractData():
+def extractData(sub):
     global rowTracker
 
     # number of rows = number of call sign/lease IDs: -2 from row_count two remove header/footer rows
@@ -27,13 +27,13 @@ def extractData():
     
     # number of cols - need to use tr[2<=x<=row_count-1] and not header row, and -1 to remove row number
 #     col_count = len(driver.find_elements_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody[1]/tr[2]/td")) - 1
-#     
-    # loop works, now just need to 
+
     for numR in range(2,row_count+2):
         row = driver.find_elements_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody[1]/tr[" + str(numR) + "]/td")
         numC = 0
         for value in row:
-            if numC > 0:
+            if numC == 0: ws1.row(rowTracker).write(numC, sub)
+            elif numC > 0:
                 ws1.row(rowTracker).write(numC, value.text)
             numC += 1
     
@@ -126,7 +126,7 @@ def subSearch(sub):
     search = driver.find_element_by_xpath("//input[@src='external/buttons/newsearch-blue.gif']")
     search.click()
     
-    extractData()
+    extractData(sub)
     
     # go back to new search
     newSearch = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/table/tbody/tr[2]/td/span[1]/a[2]")
@@ -140,13 +140,16 @@ if __name__ == '__main__':
     url = 'http://wireless2.fcc.gov/UlsApp/LicArchive/searchArchive.jsp'
     driver.get(url)
     
-    headerRow = ["Call Sign/Lease ID", "Name", "FRN", "Radio Service", "Status", "Version", "Last Action Date", "Market", "Submarket", "Channel Block", "Associated Frequencies (MHz)", "Grant", "Effective", "Expiration", "Cancellation", "1st Buildout Deadline", "2nd Buildout Deadline", "Licensee ID", "Auction"]
-    for i in range(1,20):
-        ws1.row(0).write(i, headerRow[i-1])
+    font = xlwt.Font()
+    font.bold = True
+    style = xlwt.XFStyle() # Create the Style
+    style.font = font # Apply the Font to the Style
     
-    for subsidiary in createDict(data):
-        subSearch(subsidiary)
+    headerRow = ["Subsidiary","Call Sign/Lease ID", "Name", "FRN", "Radio Service", "Status", "Version", "Last Action Date", "Market", "Submarket", "Channel Block", "Associated Frequencies (MHz)", "Grant", "Effective", "Expiration", "Cancellation", "1st Buildout Deadline", "2nd Buildout Deadline", "Licensee ID", "Auction"]
+    for i in range(0,len(headerRow)):
+        ws1.row(0).write(i, headerRow[i],style)
+    
+    subSearch("Pegasus Guard")
     
     wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')
-    
     
