@@ -5,12 +5,10 @@ Created on 8 Nov 2017
 '''
 
 from Dictionary import createDict
+# from DictObject import yearEntry
 from xlrd import open_workbook
 
-from DictObject import yearEntry
-
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
 import xlwt
@@ -28,6 +26,7 @@ def extractData(sub):
     # number of cols - need to use tr[2<=x<=row_count-1] and not header row, and -1 to remove row number
 #     col_count = len(driver.find_elements_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody[1]/tr[2]/td")) - 1
 
+    # row num needs to start from 2 to exclude header row, and write subsidiary name in col 0
     for numR in range(2,row_count+2):
         row = driver.find_elements_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody[1]/tr[" + str(numR) + "]/td")
         numC = 0
@@ -99,25 +98,11 @@ def callSignData(rowNum,colNum):
     
 def subSearch(sub):
     
+    # click the required radio service code options
     rsc = Select(driver.find_element_by_xpath("//select[@name='radioservicecode']"))
-    # AH, AT, AW, CN, CW, CY, LD, SG, SL, SP, SY, TZ, WP, WU, WX, WY, WZ 
-    rsc.select_by_value("AH")
-    rsc.select_by_value("AT")
-    rsc.select_by_value("AW")
-    rsc.select_by_value("CN")
-    rsc.select_by_value("CW")
-    rsc.select_by_value("CY")
-    rsc.select_by_value("LD")
-    rsc.select_by_value("SG")
-    rsc.select_by_value("SL")
-    rsc.select_by_value("SP")
-    rsc.select_by_value("SY")
-    rsc.select_by_value("TZ")
-    rsc.select_by_value("WP")
-    rsc.select_by_value("WU")
-    rsc.select_by_value("WX")
-    rsc.select_by_value("WY")
-    rsc.select_by_value("WZ")
+    radioServiceCodes = ["AH", "AT", "AW", "CN", "CW", "CY", "LD", "SG", "SL", "SP", "SY", "TZ", "WP", "WU", "WX", "WY", "WZ"] 
+    for value in radioServiceCodes:
+        rsc.select_by_value(value)
     
     # fill out input name of subsidiary
     inputSub = driver.find_element_by_xpath("//input[@name='fiOwnerName']")
@@ -127,6 +112,7 @@ def subSearch(sub):
     search = driver.find_element_by_xpath("//input[@src='external/buttons/newsearch-blue.gif']")
     search.click()
     
+    # start web scraping the subsidiary data
     extractData(sub)
     
     # go back to new search
@@ -136,26 +122,31 @@ def subSearch(sub):
 if __name__ == '__main__':
     chromedriver_path = '/Users/alethea/Documents/chromedriver'
     driver = webdriver.Chrome(executable_path=chromedriver_path)
-    data = open_workbook('web-scraping.xlsx')
-       
+    data = open_workbook('web-scraping.xlsx')  
     url = 'http://wireless2.fcc.gov/UlsApp/LicArchive/searchArchive.jsp'
     driver.get(url)
     
+    # write the header row in bold font
     font = xlwt.Font()
     font.bold = True
-    style = xlwt.XFStyle() # Create the Style
-    style.font = font # Apply the Font to the Style
+    style = xlwt.XFStyle() 
+    style.font = font 
     
+    # create header row in spreadsheet
     headerRow = ["Subsidiary","Call Sign/Lease ID", "Name", "FRN", "Radio Service", "Status", "Version", "Last Action Date", "Market", "Submarket", "Channel Block", "Associated Frequencies (MHz)", "Grant", "Effective", "Expiration", "Cancellation", "1st Buildout Deadline", "2nd Buildout Deadline", "Licensee ID", "Auction"]
     for i in range(0,len(headerRow)):
         ws1.row(0).write(i, headerRow[i],style)
     
     # test case using 'Pegasus Guard'
     subSearch("Pegasus Guard")
+    
+    # T-Mobile License - much bigger output
+#     subSearch("T-Mobile License LLC")
 
-    # implementation
+    # actual implementation
 #     for subsidiary in createDict(data):
 #         subSearch(subsidiary)
     
     wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')
     
+  
