@@ -36,7 +36,7 @@ def extractData(sub):
         for value in row:
             if numC == 0:
                 ws1.row(rowTracker).write(numC, sub)
-                subsWithResults.add(sub)
+                subsWithResults.add(sub) # keep adding subsidiaries that return results to set
             elif numC > 0:
                 ws1.row(rowTracker).write(numC, value.text)
             numC += 1
