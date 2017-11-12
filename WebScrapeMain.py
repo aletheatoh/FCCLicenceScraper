@@ -13,9 +13,12 @@ from selenium.webdriver.support.ui import Select
 
 import xlwt
 wb = xlwt.Workbook(encoding="utf-8")
-ws1 = wb.add_sheet('Sheet 1',cell_overwrite_ok=True)
+ws1 = wb.add_sheet('Sheet 1',cell_overwrite_ok=True) # sheet 1 contains all the webscraped data
+ws2 = wb.add_sheet('Sheet 2',cell_overwrite_ok=True) # sheet 2 contains two list of subsidiary companies: 1) returned results 2) did not return results
     
-rowTracker = 1
+rowTracker = 1 # to track row in excel spreadsheet
+subsWithResults = set([]) # set of subsidiaries that are returning results
+subsWithoutResults = set([]) # set of subsidiaries that are NOT returning results
 
 def extractData(sub):
     global rowTracker
@@ -31,11 +34,13 @@ def extractData(sub):
         row = driver.find_elements_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody[1]/tr[" + str(numR) + "]/td")
         numC = 0
         for value in row:
-            if numC == 0: ws1.row(rowTracker).write(numC, sub)
+            if numC == 0:
+                ws1.row(rowTracker).write(numC, sub)
+                subsWithResults.add(sub)
             elif numC > 0:
                 ws1.row(rowTracker).write(numC, value.text)
             numC += 1
-    
+            
         callSignDataButton = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table/tbody/tr[5]/td/table[1]/tbody/tr[" + str(numR) + "]/td[2]/a")
         callSignDataButton.click()  
     
@@ -66,8 +71,6 @@ def callSignData(rowNum,colNum):
     ws1.row(rowNum).write(colNum+4, grant.text)
     effective = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[12]/td[2]")
     ws1.row(rowNum).write(colNum+5, effective.text)
-   
-    # shift column to the right
     expiration = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[11]/td[4]")
     ws1.row(rowNum).write(colNum+6, expiration.text)
     cancellation = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/div/table[2]/tbody/tr[2]/td/table/tbody/tr[12]/td[4]")
@@ -112,10 +115,10 @@ def subSearch(sub):
     search = driver.find_element_by_xpath("//input[@src='external/buttons/newsearch-blue.gif']")
     search.click()
     
-    # start web scraping the subsidiary data
+#     # start web scraping the subsidiary data
     extractData(sub)
-    
-    # go back to new search
+#      
+#     # go back to new search
     newSearch = driver.find_element_by_xpath("/html/body/table[4]/tbody/tr/td[2]/table/tbody/tr[2]/td/span[1]/a[2]")
     newSearch.click()
 
@@ -138,15 +141,31 @@ if __name__ == '__main__':
         ws1.row(0).write(i, headerRow[i],style)
     
     # test case using 'Pegasus Guard'
-    subSearch("Pegasus Guard")
+#     subSearch("Pegasus Guard")
     
     # T-Mobile License - much bigger output
 #     subSearch("T-Mobile License LLC")
 
-    # actual implementation
-#     for subsidiary in createDict(data):
-#         subSearch(subsidiary)
+    # actual implementation: createDict(data) returns a set of all the subsidiary companies (so this removes duplicates)
+    for subsidiary in createDict(data):
+        subSearch(subsidiary)
+ 
+    # set of subsidiaries that are NOT returning results
+    subsWithoutResults = createDict(data) - subsWithResults
+    
+    ws2.row(0).write(0, "Returned Results",style)
+    ws2.row(0).write(1, "No Results",style)
+    
+    idx1 = 1
+    for sub in subsWithResults:
+        ws2.row(idx1).write(0, sub)
+        idx1+=1
+     
+    idx2 = 1
+    for sub in subsWithoutResults:
+        ws2.row(idx2).write(1, sub)
+        idx2+=1
     
     wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')
     
-  
+    driver.quit()
