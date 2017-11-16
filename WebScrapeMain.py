@@ -208,6 +208,9 @@ if __name__ == '__main__':
     # T-Mobile License - much bigger output
 #     subSearch("T-Mobile License LLC")
 
+    # test case: sub has call signs with TP status
+#     subSearch("NEXTEL WEST CORP")
+
     # actual implementation: createDict(data) returns a set of all the subsidiary companies (so this removes duplicates)
     for subsidiary in createDict(data):
         subSearch(subsidiary)
