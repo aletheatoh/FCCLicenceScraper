@@ -22,3 +22,9 @@ chromedriver_path = '/Users/alethea/Documents/chromedriver'
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 data = open_workbook('data.xlsx') 
 ```
+
+- [ ] how to configure the code to work on your local environment
+- handling timeouterrors
+- installation guides
+- fork github repo
+- brief explanation of the different python files
