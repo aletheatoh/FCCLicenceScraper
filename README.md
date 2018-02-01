@@ -17,3 +17,8 @@ This webscraper was built using Python 2.7, which does not easily read unicode s
 
 [Key differences between Python 2.7 and Python 3](https://www.digitalocean.com/community/tutorials/python-2-vs-python-3-practical-considerations-2)
 ## Running the Web Scraper
+```
+chromedriver_path = '/Users/alethea/Documents/chromedriver'
+driver = webdriver.Chrome(executable_path=chromedriver_path)
+data = open_workbook('data.xlsx') 
+```
