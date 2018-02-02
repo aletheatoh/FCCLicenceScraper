@@ -7,7 +7,11 @@ Created on 6 Nov 2017
 from xlrd import open_workbook
 import xlrd
 
-visited_companies = set()  # set of subsidiaries
+'''
+This is a helper function to return a set of subsidiaries that have already been searched
+'''
+
+visited_companies = set()  # set of subsidiaries that have already visited and searched
 
 def visited(data):
 
@@ -33,4 +37,3 @@ if __name__ == '__main__':
     data = open_workbook('Results_So_Far.xlsx')
     print visited(data)
     print len(visited(data))
-
