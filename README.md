@@ -17,14 +17,22 @@ Install the following:
 - IDE: 
   - [PyCharm](https://www.jetbrains.com/pycharm/)
   - [Eclipse](https://docs.google.com/document/d/1LgylwTTQiDQpF8kz0_L068G1jE8IYSIcQk-vlwcbUvU/edit) - installation guide for CS101
+ - Selenium Webdriver
  - xlrd & xlwt
   - If you have already installed python, it is easier to use ```pip``` to install packages on your terminal. Simply run these on your command line:
     * ```python get-pip.py```
     * ```pip install xlrd``` & ```pip install xlwt```
- Next,
+
+
+Next, click on 'Clone or Download':
+<p><img width="446" alt="screen shot 2018-02-02 at 7 59 23 pm" src="https://user-images.githubusercontent.com/22549537/35732222-99d93e68-0853-11e8-837e-82e40b77a0ba.png"></p>
+
+If you're not familiar with Github and cloning repositories, you can simply click 'Download ZIP', unzip the folder, and open the **inner folder 'WebScraping' on your IDE**. 
 
 #### Important Note
-This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It might be better to switch to Python 3 which has more unicode support. 
+- This webscraper was built on a Mac OS X. If you're using the command line, the Windows command line is different from that of Mac OS X (terminal). 
+- This webscraper was built using chromedriver. If you want to use a different browser you will need to install the appropriate webdriver extension. 
+- This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It might be better to switch to Python 3 which has more unicode support. 
 ## Running the Web Scraper
 ### Overview
 #### Stating the file path
@@ -51,13 +59,9 @@ You only need to amend the following lines in **WebScraperMain.py**:
 - Line 152: change ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
 - Lines 70 & 183: change ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
 - Line 153: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 183**. This will make your life a lot easier in the event the code crashes.
+### Finally, run WebScraperMain.py to scrape the data!
 
-
-- note that I'm using a mac
-
-- handling timeouterrors
 - installation guides
-- fork github repo
 
 - brief explanation of the different python files
 
