@@ -10,7 +10,7 @@ Code to webscrape data from the Federal Communications Commission (FCC)'s Univer
 - Selenium & Webdiver (i.e. Chrome, FireFox, Safari) extension
 - xlrd (to read in data from excel spreadsheet database)
 - xlwt (to generate excel spreadsheet output)
-#### Disclaimer
+#### Important Note
 - This webscraper was built on a Mac OS X. If you're using another operating system, the Windows command line is different from that of terminal for Mac OS X. (Working on instructions for other operating systems and browsers)
 - This webscraper was built using chromedriver. If you want to use a different browser you will need to install the appropriate webdriver extension. 
 - This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It is recommended to explore if it is better to switch to Python 3 which has more unicode support. 
