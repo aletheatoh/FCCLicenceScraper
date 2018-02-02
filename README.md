@@ -80,6 +80,8 @@ You only need to amend the following lines in **WebScraperMain.py**:
 - **Lines 70 & 184**: change ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
 - **Line 153**: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 184**. This will make your life a lot easier in the event the code crashes.
 
+Whenever you are reading an excel workbook, make sure it is a ```.xlsx``` file and not a ```.xls``` file. To change it you can simply rename it. 
+
 **Finally, run WebScraperMain.py to scrape the data!**
 
 ## The Output Data
