@@ -70,6 +70,6 @@ You only need to amend the following lines in **WebScraperMain.py**:
 - **Line 149**: change ```chromedriver_path = '/Users/alethea/Documents/chromedriver'``` to state your ChromeDriver file location
 - **Line 151**: change ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
 - **Lines 70 & 184**: change ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
-- **Line 153**: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 183**. This will make your life a lot easier in the event the code crashes.
+- **Line 153**: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 184**. This will make your life a lot easier in the event the code crashes.
 
 **Finally, run WebScraperMain.py to scrape the data!**
