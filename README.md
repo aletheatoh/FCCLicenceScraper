@@ -10,10 +10,14 @@ Code to webscrape data from the Federal Communications Commission (FCC)'s Univer
 - Selenium & Webdriver (i.e. Chrome, FireFox, Safari) extension
 - xlrd (to read in data from excel spreadsheet database)
 - xlwt (to generate excel spreadsheet output)
-#### Important Note
-- This webscraper was built on a Mac OS X. If you're using another operating system, the Windows command line is different from that of terminal for Mac OS X. (Working on instructions for other operating systems and browsers)
-- This webscraper was built using ChromeDriver. If you want to use a different browser you will need to install the appropriate webdriver extension. 
-- This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It is recommended to explore if it is better to switch to Python 3 which has more unicode support. 
+#### Things to Note
+##### Operating System & Browser
+This webscraper was built on a Mac OS X. If you're using another operating system, the Windows command line is different from that of terminal for Mac OS X. (Working on instructions for other operating systems and browsers)
+
+This webscraper was built using ChromeDriver. If you want to use a different browser you will need to install the appropriate webdriver extension. 
+##### Python 2.7 vs Python 3 and handling non-ASCII characters
+This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It is recommended to explore if it is better to switch to Python 3 which has more unicode support. 
+
 ### Installing
 #### Python 2.7 (if you followed the Eclipse installation guide below you can skip this step)
 You can download from [python.org](https://www.python.org/downloads/) itself. Note that python comes pre-installed on Mac OS X
@@ -73,3 +77,18 @@ You only need to amend the following lines in **WebScraperMain.py**:
 - **Line 153**: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 184**. This will make your life a lot easier in the event the code crashes.
 
 **Finally, run WebScraperMain.py to scrape the data!**
+
+## The Output Data
+Sheet 1 contains all the scraped data.
+
+Sheet 2 contains two column lists. The first contains a list of all subsidiary companies that returned results, and the second contains a list of those that did not return any results.
+
+### Cleaning Up the Output Data
+This webscraper does not output the data in a sorted order, and does not autofit the column widths in the spreadsheet. 
+
+To sort the data lexicographically by the subsidiaries, click ```Data``` --> ```Sort``` and you should see this:
+<img width="694" alt="screen shot 2018-02-02 at 10 27 23 pm" src="https://user-images.githubusercontent.com/22549537/35737959-5043621e-0868-11e8-8d5a-ec034e30f897.png">
+
+Select 'Subsidiary' under the Column tab and click ```ok```. 
+
+To autofit the column width, select all using Command-A, click ```Home``` --> ```Format``` --> ```AutoFit Column Width```.
