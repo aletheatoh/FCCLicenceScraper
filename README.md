@@ -5,13 +5,21 @@ Code to webscrape data from the Federal Communications Commission (FCC)'s Univer
 - Selenium 3.7.0
 ## Getting Started
 ### Preresquisites
-- An IDE (Most Duke Students who have done CS101 and/or CS201 use Eclipse)
 - Python 2.7 (Version used for CS101 @ Duke) 
+- An IDE 
 - Selenium & Webdiver (i.e. Chrome, FireFox, Safari) extension
 - xlrd (to read in data from excel spreadsheet database)
 - xlwt (to generate excel spreadsheet output)
 ### Installing
-- Python files
+- Python 2.7 (if you followed the Eclipse installation guide below you can skip this step)
+  - Download from [python.org](https://www.python.org/downloads/) itself
+- IDE: 
+  - [PyCharm](https://www.jetbrains.com/pycharm/)
+  - [Eclipse](https://docs.google.com/document/d/1LgylwTTQiDQpF8kz0_L068G1jE8IYSIcQk-vlwcbUvU/edit) - installation guide for CS101
+ - xlrd & xlwt
+  - If you have install python, it is easier to use ```pip``` to install packages on your terminal. Simply run these on your command line:
+    * ```python get-pip.py```
+    * ```pip install xlrd``` & ```pip install xlwt```
 #### Important Note
 This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It might be better to switch to Python 3 which has more unicode support. 
 
