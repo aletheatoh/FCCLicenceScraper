@@ -61,14 +61,15 @@ However with ChromeDriver you will need to state where your ChromeDriver file is
 chromedriver_path = '/Users/alethea/Documents/chromedriver'
 driver = webdriver.Chrome(executable_path=chromedriver_path)
 ```
-Note that if you did not change your ChromeDriver file location it will still be in downloads!
+Note that if you did not change your ChromeDriver file location it will still be in your downloads folder!
 #### Code crashing?
 Considering the fact that there are 4382 companies, you will mostly encounter TimeOutErrors. 
 Fret not, the code has been designed such that in such an event, you can just run the code on companies you have not searched yet while retaining all previously scraped data. The code saves the output data spreadsheet each time it has successfully scraped data for one company. 
 ### What to amend in the code to work on your local environment
 You only need to amend the following lines in **WebScraperMain.py**:
-- Line 149: change ```chromedriver_path = '/Users/alethea/Documents/chromedriver'``` to state your ChromeDriver file location
-- Line 152: change ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
-- Lines 70 & 183: change ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
-- Line 153: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 183**. This will make your life a lot easier in the event the code crashes.
+- **Line 149**: change ```chromedriver_path = '/Users/alethea/Documents/chromedriver'``` to state your ChromeDriver file location
+- **Line 151**: change ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
+- **Lines 70 & 184**: change ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
+- **Line 153**: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 183**. This will make your life a lot easier in the event the code crashes.
+
 **Finally, run WebScraperMain.py to scrape the data!**
