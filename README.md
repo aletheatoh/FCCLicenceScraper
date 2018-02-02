@@ -21,7 +21,7 @@ This webscraper was built using Python 2.7, which does not easily read unicode s
 ### Installing
 #### Python 2.7 (if you followed the Eclipse installation guide below you can skip this step)
 You can download from [python.org](https://www.python.org/downloads/) itself. Note that python comes pre-installed on Mac OS X. 
-#### IDE: 
+#### IDE
 - [PyCharm](https://www.jetbrains.com/pycharm/)
 - [Eclipse](https://docs.google.com/document/d/1LgylwTTQiDQpF8kz0_L068G1jE8IYSIcQk-vlwcbUvU/edit) - installation guide for CS101
 #### Selenium, xlrd & xlwt
