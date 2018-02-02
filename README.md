@@ -28,7 +28,7 @@ You can download from [python.org](https://www.python.org/downloads/) itself. No
 If you have already installed python or if you are using Mac OS X, it is easiest to use ```pip``` on the command line. 
 First, open terminal and type ```python get-pip.py```.
 
-To install selenium type ```pip install selenium```. If it doesn't work, try ```sudo easy_install selenium ```.
+To install selenium, type ```pip install selenium```. If it doesn't work, try ```sudo easy_install selenium ```.
 
 To install the xlrd & xlwt packages, type ```pip install xlrd``` and ```pip install xlwt```.
 
@@ -40,13 +40,13 @@ After unzipping your folder, open terminal and type in the following commands as
 
 *ScreenShot from Youtube: AutomationTuts*
 
-[This video](https://www.youtube.com/watch?v=XFVXaC41Xac), which the screenshot was taken from, show you how to install and setup both Selenium and ChromeDriver on a Mac OS. 
+[This video](https://www.youtube.com/watch?v=XFVXaC41Xac), which the screenshot was taken from, shows you how to install and setup both Selenium and ChromeDriver on a Mac OS. 
   
 #### Cloning or Downloading this Reposistory
 Next, click on 'Clone or Download':
 <p><img width="446" alt="screen shot 2018-02-02 at 7 59 23 pm" src="https://user-images.githubusercontent.com/22549537/35732222-99d93e68-0853-11e8-837e-82e40b77a0ba.png"></p>
 
-If you're not familiar with Github and cloning repositories, you can simply click 'Download ZIP', unzip the folder, and open the **inner folder 'WebScraping' on your IDE**. Importantly, make sure that all the python modules are in the same directory on your IDE. 
+If you're not familiar with Github and cloning repositories, you can simply click 'Download ZIP', unzip the folder, and open the **inner directory 'WebScraping' on your IDE**. Importantly, make sure that all the python modules are in the same directory on your IDE. 
 
 ## Running the Web Scraper
 ### Overview
