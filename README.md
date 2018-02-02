@@ -51,7 +51,8 @@ If you're not familiar with Github and cloning repositories, you can simply clic
 ## Running the Web Scraper
 ### Overview
 #### Stating the file path
-Basically, whenever you are opening a file, you need to reference the path of your directory. 
+Basically, whenever you are opening a file, you will need to reference the path of your directory. 
+
 It is usually easiest if the file is in your current directory, as you simply have to state the file name, for example:
 ```
 data = open_workbook('data.xlsx') 
