@@ -15,7 +15,7 @@ Code to webscrape data from the Federal Communications Commission (FCC)'s Univer
 #### Important Note
 This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It might be better to switch to Python 3 which has more unicode support. 
 
-[Key differences between Python 2.7 and Python 3](https://www.digitalocean.com/community/tutorials/python-2-vs-python-3-practical-considerations-2)
+Reference: [Key differences between Python 2.7 and Python 3](https://www.digitalocean.com/community/tutorials/python-2-vs-python-3-practical-considerations-2)
 ## Running the Web Scraper
 ```
 chromedriver_path = '/Users/alethea/Documents/chromedriver'
