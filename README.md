@@ -71,6 +71,7 @@ driver = webdriver.Chrome(executable_path=chromedriver_path)
 Note that if you did not change your ChromeDriver file location it will still be in your downloads folder!
 #### Code crashing?
 Considering the fact that there are 4382 companies, you will mostly encounter TimeOutErrors. 
+
 Fret not, the code has been designed such that in such an event, you can just run the code on companies you have not searched yet while retaining all previously scraped data. The code saves the output data spreadsheet each time it has successfully scraped data for one company. 
 ### What to amend in the code to work on your local environment
 You only need to amend the following lines in **WebScraperMain.py**:
