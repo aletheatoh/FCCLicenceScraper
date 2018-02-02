@@ -49,7 +49,9 @@ Next, click on 'Clone or Download':
 If you're not familiar with Github and cloning repositories, you can simply click 'Download ZIP', unzip the folder, and open the **inner directory 'WebScraping' on your IDE**. Importantly, make sure that all the python modules are in the same directory on your IDE. 
 
 ## Running the Web Scraper
-### Overview (if you understand these already just skip to the next section on what code snippets you have to amend)
+### Overview
+If you understand these already (or are just lazy) just skip to the next section on what code snippets you have to amend.
+
 #### Stating the file path
 Basically, whenever you are opening a file, you will need to reference the path of your directory. 
 
