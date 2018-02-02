@@ -22,8 +22,6 @@ Code to webscrape data from the Federal Communications Commission (FCC)'s Univer
     * ```pip install xlrd``` & ```pip install xlwt```
 #### Important Note
 This webscraper was built using Python 2.7, which does not easily read unicode strings. At present, this webscraper is not able to scrape data for 1510 companies whose names have non-ascii characters. It might be better to switch to Python 3 which has more unicode support. 
-
-Reference: [Key differences between Python 2.7 and Python 3](https://www.digitalocean.com/community/tutorials/python-2-vs-python-3-practical-considerations-2)
 ## Running the Web Scraper
 ### Overview
 #### Stating the file path
@@ -45,11 +43,11 @@ driver = webdriver.Chrome(executable_path=chromedriver_path)
 Considering the fact that there are 4382 companies, you will mostly encounter TimeOutErrors. 
 Fret not, the code has been designed such that in such an event, you can just run the code on companies you have not searched yet while retaining all previously scraped data. 
 ### What to amend in the code to work on your local environment
-- WebScrapeMain.py
-  - Line 149: amend ```chromedriver_path = '/Users/alethea/Documents/chromedriver'``` to state your ChromeDriver location
-  - Line 152: amend ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
-  - Lines 70 & 183: amend ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
-  - Line 153: **state the same file path in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **as the one stated in Lines 70 & 183**. This will make your life a lot easier in the event the code crashes.
+You only need to amend the following lines in **WebScrapeMain.py**:
+- Line 149: change ```chromedriver_path = '/Users/alethea/Documents/chromedriver'``` to state your ChromeDriver location
+- Line 152: change ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
+- Lines 70 & 183: change ```wb.save('/Users/alethea/Downloads/Spreadsheet_test.xls')``` to state which directory you want your data output to be located in. 
+- Line 153: **state the file path of your output data in** ```visited_file = open_workbook('/Users/alethea/Documents/Spreadsheet_test.xls')``` **which is the same as the one stated in Lines 70 & 183**. This will make your life a lot easier in the event the code crashes.
 
 
 - note that I'm using a mac
