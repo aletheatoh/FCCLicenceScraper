@@ -73,7 +73,7 @@ Note that if you did not change your ChromeDriver file location it will still be
 Considering the fact that there are 4382 companies, you will mostly encounter TimeOutErrors. 
 
 Fret not, the code has been designed such that in such an event, you can just run the code on companies you have not searched yet while retaining all previously scraped data. The code saves the output data spreadsheet each time it has successfully scraped data for one company. 
-### What to amend in the code to work on your local environment
+### What to amend in the code to work on your local machine
 You only need to amend the following lines in **WebScraperMain.py**:
 - **Line 149**: change ```chromedriver_path = '/Users/alethea/Documents/chromedriver'``` to state your ChromeDriver file location
 - **Line 151**: change ```data = open_workbook('data.xlsx')``` to state the file path of the excel workbook of licensees if it is not in your current directory
